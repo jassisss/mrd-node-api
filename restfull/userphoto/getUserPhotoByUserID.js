@@ -8,8 +8,13 @@ module.exports = function (server, knex, errs) {
             .where('user_id', id)
             .first()
             .then((data) => {
-                if(!data) return res.send(new errs.NotFoundError('Nada foi encontrado'))
-                res.send(data);
+                if(!data) {
+                    return res.send(new errs.NotFoundError('Nada foi encontrado'))
+                } else {
+                    const base64data = new Buffer(data.img, "binary").toString("base64");
+                    data.img = base64data;
+                    res.send(data);
+                }
             }, next)
 
     });
