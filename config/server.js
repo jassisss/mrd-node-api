@@ -2,7 +2,7 @@ const restify = require('restify');
 const corsMiddleware = require('restify-cors-middleware')
 
 const server = restify.createServer({
-  name: 'app-cgctec',
+  name: 'app-mrd',
   version: '1.0.0'
 });
 
