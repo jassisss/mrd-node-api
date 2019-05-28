@@ -2,8 +2,20 @@ module.exports = function (server, knex, errs) {
 
     server.post('/userphoto', (req, res, next) => {
 
+        const md5 = require('md5');
+
+        const md5Date = md5(new Date());
+
         const base64data = new Buffer.from(req.body.img, "base64");
-        req.body.img = base64data;
+
+        const photo = req.body;
+
+        photo.date_create = new Date();
+        photo.date_update = new Date();
+
+        photo.img = base64data;
+        photo.name = photo.name + '_' + md5(photo.name + md5Date);
+
         knex('user_photo')
             .insert(req.body)
             .then((data) => {
