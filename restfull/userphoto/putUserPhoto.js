@@ -20,7 +20,7 @@ module.exports = function (server, knex, errs) {
 
         knex('user_photo')
             .where('user_id', id)
-            .update(req.body)
+            .update(photo)
             .then((data) => {
                 if(!data) return res.send(new errs.NotFoundError('Erro na alteração'))
                 res.send('Dados atualizados');

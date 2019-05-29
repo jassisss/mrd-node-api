@@ -17,7 +17,7 @@ module.exports = function (server, knex, errs) {
         photo.name = photo.name + '_' + md5(photo.name + md5Date);
 
         knex('user_photo')
-            .insert(req.body)
+            .insert(photo)
             .then((data) => {
                 if(!data) return res.send(new errs.BadRequestError('Erro na inclusão da foto'))
                 res.send(data);
