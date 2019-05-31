@@ -4,7 +4,7 @@ module.exports = function (server, knex, errs) {
     const handlebars = require("node-handlebars");
     const md5 = require('md5');
     const $usuario = 'contato@cgctec.com.br';
-    const $senha = 'Jssajj99-';
+    const $senha = 'contato_cgctec_99-';
 
     server.post('/emailresetpassword', (req, res, next) => {
 
