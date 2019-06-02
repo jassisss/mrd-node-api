@@ -5,7 +5,7 @@ module.exports = function (server, knex, errs) {
 	  const md5 = require('md5');
 	  
 	  var email = req.body.email;
-	  var password = req.body.password;
+	  var password = req.body.newpassword;
 	  var password_reset_token = req.body.password_reset_token;
 	  var password_reset_token_expired = new Date();
 	  var id = 0;
