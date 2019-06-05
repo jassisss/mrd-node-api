@@ -32,7 +32,7 @@ module.exports = function (server, knex, errs) {
                         const hbs = handlebars.create({
                             partialsDir: __dirname
                         });
-                        hbs.engine(__dirname + "\\..\\views\\emailResetPasswordCGCTec.html", {name: username, email: email, token: password_reset_token }, function (err, html) {
+                        hbs.engine(__dirname + "\\..\\views\\emailResetPasswordMRD.html", {name: username, email: email, token: password_reset_token }, function (err, html) {
                             if (err) {
                                 throw err;
                             }
@@ -56,9 +56,9 @@ module.exports = function (server, knex, errs) {
                             const $destinatario = email;
 
                             const mailOptions = {
-                                from: 'CGC Tecnologia <' + $usuario + '>',
+                                from: 'MRD - Nerd Store <' + $usuario + '>',
                                 to: $destinatario,
-                                subject: 'CGC Tecnologia - Reset de Senha',
+                                subject: 'MRD - Nerd Store - Reset de Senha',
                                 html: $html
                             };
 
