@@ -1,4 +1,6 @@
-module.exports = function (server, knex, errs) {
+const jwt = require('jsonwebtoken');
+
+const loginp = (server, knex, errs) => {
 
     server.post('/loginp', function(req, res, next) {
 
@@ -34,8 +36,13 @@ module.exports = function (server, knex, errs) {
                     .first()
                     .then((dados) => {
                         if(!dados) return res.send(new errs.UnauthorizedError('Usuário ou senha incorretos'));
-                        token = md5(password + password_token + new Date());
-                        dados.token = token;
+                        const { email, id, typeName } = dados;
+                        const token_dados = jwt.sign(
+                            { email, id, typeName },
+                            '5d5b7c0788f2b69e3fb13c19339feab1',
+                            { expiresIn: 60 * 60 * 24 }
+                        );
+                        dados.token = token_dados;
                         const base64data = new Buffer.from(dados.photo, "binary").toString("base64");
                         dados.photo = base64data;
                         res.send(dados);
@@ -45,4 +52,7 @@ module.exports = function (server, knex, errs) {
 
     });
 
-}
+};
+
+module.exports = loginp;
+

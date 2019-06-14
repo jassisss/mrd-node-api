@@ -26,5 +26,3 @@ consign().include('./restfull/user').into(server, knex, errs);
 // rotas REST para o product
 
 consign().include('./restfull/product').into(server, knex, errs);
-
-// Eviando um e-mail
